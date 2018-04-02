@@ -43,6 +43,11 @@ defmodule MessageApp.Mixfile do
       {:cowboy, "~> 1.0"},
       {:arc, "~> 0.8.0"},
       {:arc_ecto, "~> 0.7.0"}
+
+      # uploading to S3
+      # {:ex_aws, "~> 1.1"},
+      # {:poison, "~> 3.1"},
+      # {:httpoison, "~> 0.11"}
     ]
   end
 
