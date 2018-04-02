@@ -29,6 +29,8 @@
 
 ## create `message_view.ex` file in ../message_app/lib/message_app_web/views/message_view.ex
 
+## run `mix deps.get` after :arc and :arc_ecto have been added as dependencies
+
 
 
 
