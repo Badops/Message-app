@@ -17,3 +17,22 @@
 ## create `new.html.eex` in ../message_app/lib/message_app_web/templates/user/new.html.eex
 
 ## create `user_view.ex` file in ../message_app/lib/message_app_web/views/user_view.ex
+
+## run `mix phx.gen.context Messages Message messages  message:string` to create the Messages context and Message schema
+
+## create `message_controller.ex` file in ../message_app/lib/message_app_web/controllers/message_controller.ex
+
+## create `message` subdirectory in ../message_app/lib/message_app_web/templates/message
+
+
+############### create `index.html.eex` in ../message_app/lib/message_app_web/templates/message/index.html.eex
+
+## create `message_view.ex` file in ../message_app/lib/message_app_web/views/message_view.ex
+
+
+
+
+
+
+
+

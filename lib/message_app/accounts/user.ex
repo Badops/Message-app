@@ -5,7 +5,7 @@ defmodule MessageApp.Accounts.User do
 
   schema "users" do
     field :username, :string
-
+    
     timestamps()
   end
 
