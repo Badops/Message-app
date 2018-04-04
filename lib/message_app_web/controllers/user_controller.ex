@@ -17,8 +17,8 @@ defmodule MessageAppWeb.UserController do
 		case Accounts.create_user(user_params) do
 			{:ok, _changeset} -> 
 				conn
-				|> put_flash(:info, "You are now registered")
-				|> redirect(to: "/")
+				|> put_flash(:info, "Resgistered! You can now send a message to another user.")
+				|> redirect(to: "/index")
 
 			{:error, changeset} ->
 				conn
@@ -26,8 +26,4 @@ defmodule MessageAppWeb.UserController do
 				|> render("new.html", changeset: changeset)
 		end
 	end
-
-
-
-
 end
