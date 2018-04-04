@@ -1,0 +1,23 @@
+<h2>All messages</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th> S/N </th>
+      <th>From</th>
+      <th>Message</th>
+      <th>Attachment</th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for message <- @messages do %>
+    <tr>
+      <td><%= message.id %></td>
+      <td><%= username(message) %></td>
+      <td><%= message.message %></td>
+      <td><%= link "Download", to: "/attachment/#{message.id}", class: "btn"%></td>
+
+    </tr>
+<% end %>
+  </tbody>
+</table>

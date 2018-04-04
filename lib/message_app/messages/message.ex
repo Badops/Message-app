@@ -8,6 +8,7 @@ defmodule MessageApp.Messages.Message do
   schema "messages" do
     field :message, :string
     field :attach_file, MessageApp.Messages.AttachFile.Type
+    field :content_type, :string
     
     belongs_to :sender, MessageApp.Accounts.User, foreign_key: :from
     belongs_to :receiver, MessageApp.Accounts.User, foreign_key: :to
@@ -16,7 +17,7 @@ defmodule MessageApp.Messages.Message do
   end
 
   @required_fields [:message, :from, :to]
-  @optional_fields []
+  @optional_fields [:content_type]
   @attach_file_field [:attach_file]
 
   @doc false

@@ -101,4 +101,9 @@ defmodule MessageApp.Messages do
   def change_message(%Message{} = message) do
     Message.changeset(message, %{})
   end
+
+  def get_user_messages(username) do
+    user = MessageApp.Accounts.get_user_by_username(username)
+    Repo.all(from m in Message, where: m.to == ^user.id)
+  end
 end

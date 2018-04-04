@@ -5,6 +5,8 @@ defmodule MessageApp.Repo.Migrations.CreateMessages do
     create table(:messages) do
       add :message, :string
       add :attach_file, :string
+      add :content_type, :string
+      
       add :from, references(:users, on_delete: :nothing)
       add :to, references(:users, on_delete: :nothing)
 

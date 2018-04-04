@@ -23,6 +23,8 @@ defmodule MessageAppWeb.Router do
     get "/users", UserController, :index
     get "/index", MessageController, :new
     post "/index", MessageController, :create
+    get "/:user", MessageController, :index
+    get "/attachment/:message_id", MessageController, :download
   end
 
   # Other scopes may use custom stacks.

@@ -6,10 +6,10 @@ defmodule MessageAppWeb.MessageController do
 	alias MessageApp.Messages
 
 
-	# def index(conn, ) do
-		# users = Accounts.list_users()
-    # render(conn, "index.html", users: users)
-	# end
+	def index(conn, %{"user" => username}) do
+		messages = Messages.get_user_messages(username)
+		render(conn, "index.html", messages: messages)
+	end
 
   def new(conn, params) do
 		changeset = Message.changeset(%Message{}, params)
@@ -17,7 +17,11 @@ defmodule MessageAppWeb.MessageController do
 	end
 	
 	def create(conn, %{"message" => message_params}) do
+		IO.inspect message_params
 		update_map = replace_username_with_id(message_params)
+									|> Map.put("path", message_params["attach_file"].path)
+									|> Map.put("content_type", message_params["attach_file"].content_type)
+		
 		case Messages.create_message(update_map) do
 			{:ok, _changeset} -> 
 				conn
@@ -31,6 +35,19 @@ defmodule MessageAppWeb.MessageController do
 		end
 	end
 
+	def download(conn, params = %{"message_id" => id}) do
+		message = MessageApp.Messages.get_message!(id)
+		conn
+    |> put_resp_header(
+      "content-disposition",
+      ~s(attachment; filename="#{message.attach_file.file_name}")
+    )
+    |> put_resp_header("content-type", "#{message.content_type}")
+    |> send_file(:ok, "#{Path.expand("./uploads")}/#{message.attach_file.file_name}")
+	end
+
+	# "/tmp/plug-1522/multipart-1522708739-250234632823950-3
+	
 	defp get_users(message_params) do
 		sender = message_params["from"]
 						|> String.downcase()
