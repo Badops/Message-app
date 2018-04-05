@@ -21,6 +21,7 @@ defmodule MessageAppWeb.Router do
     get "/users/new", UserController, :new
     post "/users", UserController, :create
     get "/users", UserController, :index
+    
     get "/index", MessageController, :new
     post "/index", MessageController, :create
     get "/:user", MessageController, :index

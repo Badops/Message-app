@@ -13,10 +13,13 @@
 <%= for message <- @messages do %>
     <tr>
       <td><%= message.id %></td>
-      <td><%= username(message) %></td>
-      <td><%= message.message %></td>
-      <td><%= link "Download", to: "/attachment/#{message.id}", class: "btn"%></td>
-
+      <td><%= message.from %></td>
+      <td><%= message.message %></td> 
+      <%= if message.attach_file do %>
+        <td><%= link "Download", to: "/attachment/#{message.id}", class: "btn"%></td>
+      <% else %>
+        <td>No attachment</td>
+      <% end %>
     </tr>
 <% end %>
   </tbody>

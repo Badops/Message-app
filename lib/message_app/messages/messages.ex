@@ -7,7 +7,6 @@ defmodule MessageApp.Messages do
   alias MessageApp.Repo
 
   alias MessageApp.Messages.Message
-  alias MessageApp.Accounts.User
 
   @doc """
   Returns the list of messages.
@@ -103,15 +102,8 @@ defmodule MessageApp.Messages do
     Message.changeset(message, %{})
   end
 
+  # This function fetches all the messages of a user based on username
   def get_user_messages(username) do
-    user = MessageApp.Accounts.get_user_by_username(username)
-
-    case user do
-      %User{} ->
-         users = Repo.all(from m in Message, where: m.to == ^user.id)
-         users
-      _ -> :error
-
-    end
+    Repo.all(from m in Message, where: m.to == ^username)
   end
 end
