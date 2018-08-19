@@ -17,6 +17,15 @@ defmodule MessageAppWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+
+    get "/users/new", UserController, :new
+    post "/users", UserController, :create
+    get "/users", UserController, :index
+    
+    get "/index", MessageController, :new
+    post "/index", MessageController, :create
+    get "/:user", MessageController, :index
+    get "/attachment/:message_id", MessageController, :download
   end
 
   # Other scopes may use custom stacks.
